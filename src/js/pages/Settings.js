@@ -1,9 +1,10 @@
 import React from "react"
+import { withRouter } from "react-router";
 
 import Footer from "../components/Footer.js"
 import Header from "../components/Header.js"
 
-export default class Settings extends React.Component  {
+export default withRouter(class Settings extends React.Component  {
 	constructor() {
 		super();
 		this.state = {
@@ -22,4 +23,4 @@ export default class Settings extends React.Component  {
 			</div>
 		);
 	}
-}
+});

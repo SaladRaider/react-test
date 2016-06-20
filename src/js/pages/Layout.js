@@ -1,10 +1,10 @@
 import React from "react"
-import { Link } from "react-router";
+import { Link, withRouter } from "react-router";
 
 import Footer from "../components/Footer.js"
 import Header from "../components/Header.js"
 
-export default class Layout extends React.Component  {
+export default withRouter(class Layout extends React.Component  {
 	constructor() {
 		super();
 		this.state = {
@@ -17,8 +17,7 @@ export default class Layout extends React.Component  {
 	}
 
 	navigate() {
-		console.log(this.props);
-		this.props.history.pushState(null, "/");
+		this.props.router.push("/");
 	}
 
 	render()  {
@@ -33,4 +32,4 @@ export default class Layout extends React.Component  {
 			</div>
 		);
 	}
-}
+});

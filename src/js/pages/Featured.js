@@ -1,32 +1,54 @@
-import React from "react"
+import React from "react";
+import { withRouter } from "react-router";
 
-import Article from "../components/Article.js"
+import Todo from "../components/Todo.js";
+import * as TodoActions from "../actions/TodoActions.js";
+import TodoStore from "../stores/TodoStore.js";
 
-export default class Featured extends React.Component  {
+export default withRouter(class Featured extends React.Component  {
 	constructor() {
 		super();
+		this.getTodos = this.getTodos.bind(this);
 		this.state = {
-			title: "Welcome"
+			todos: TodoStore.getAll()
 		};
 	}
 
-	changeTitle(title) {
-		this.setState({title});
+	componentWillMount() {
+		TodoStore.on("change", this.getTodos);
+	}
+
+	componentWillUnmount() {
+		TodoStore.removeListener("change", this.getTodos);
+	}
+
+	createTodo() {
+		TodoActions.createTodo(document.getElementById("todoTextbox").value);
+	}
+
+	getTodos() {
+		this.setState({
+			todos: TodoStore.getAll()
+		});
 	}
 
 	render()  {
-		const Articles = [
-			"Some Articles",
-			"Some Other Articles",
-			"Some sdfsd dsArticles",
-			"asdf sfads"
-		].map((title, i) => <Article key={i} title={title} />);
+		
+		const { todos } = this.state;
+
+		const TodoComponents = todos.map((todo) => {
+			return <Todo key={todo.id} {...todo} />
+		});
 
 		return (
 			<div>
-				<h1>Featured</h1>
-				<div class="row">{Articles}</div>
+				<button onClick={this.createTodo.bind(this)}>Create!!</button>
+				<input id="todoTextbox" />
+				<h1>Todos</h1>
+				<div class="row">
+				<div class="col-xs-12">{TodoComponents}</div>
+				</div>
 			</div>
 		);
 	}
-}
+});

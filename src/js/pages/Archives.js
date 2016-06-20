@@ -1,6 +1,7 @@
-import React from "react"
+import React from "react";
+import { withRouter } from "react-router";
 
-export default class Archives extends React.Component  {
+export default withRouter(class Archives extends React.Component  {
 	constructor() {
 		super();
 		this.state = {
@@ -23,4 +24,4 @@ export default class Archives extends React.Component  {
 			</div>
 		);
 	}
-}
+})
