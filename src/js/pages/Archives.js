@@ -1,8 +1,5 @@
 import React from "react"
 
-import Footer from "../components/Footer.js"
-import Header from "../components/Header.js"
-
 export default class Archives extends React.Component  {
 	constructor() {
 		super();
@@ -15,11 +12,14 @@ export default class Archives extends React.Component  {
 		this.setState({title});
 	}
 
+
 	render()  {
+		const { article } = this.props.params;
+		const { query } = this.props.location;
+		const { date } = query;
 		return (
 			<div>
-				<h1>Archives</h1>
-				<Footer />
+				<h1>Archives ({article}) on {date}</h1>
 			</div>
 		);
 	}

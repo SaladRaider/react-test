@@ -1,7 +1,6 @@
 import React from "react"
 
-import Footer from "../components/Footer.js"
-import Header from "../components/Header.js"
+import Article from "../components/Article.js"
 
 export default class Featured extends React.Component  {
 	constructor() {
@@ -16,10 +15,17 @@ export default class Featured extends React.Component  {
 	}
 
 	render()  {
+		const Articles = [
+			"Some Articles",
+			"Some Other Articles",
+			"Some sdfsd dsArticles",
+			"asdf sfads"
+		].map((title, i) => <Article key={i} title={title} />);
+
 		return (
 			<div>
 				<h1>Featured</h1>
-				<Footer />
+				<div class="row">{Articles}</div>
 			</div>
 		);
 	}

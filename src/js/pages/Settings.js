@@ -19,7 +19,6 @@ export default class Settings extends React.Component  {
 		return (
 			<div>
 				<h1>Settings</h1>
-				<Footer />
 			</div>
 		);
 	}
